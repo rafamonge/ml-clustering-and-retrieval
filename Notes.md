@@ -182,4 +182,5 @@ Note: it also takes into account the prior probability of a randome data point b
 - If you set the variance parameter -> 0 then you get k means. Why?
     - Spherical clusters. Likelihood becomes equal to cluster center
     - As variance tends towards 0 -> likelihood ratio becomes 0 or 1. we have hard assignments!
-    -
+
+
