@@ -183,4 +183,65 @@ Note: it also takes into account the prior probability of a randome data point b
     - Spherical clusters. Likelihood becomes equal to cluster center
     - As variance tends towards 0 -> likelihood ratio becomes 0 or 1. we have hard assignments!
 
+# LDA / Latent Dirichlet Allocation
+
+## Motivation
+
+- Soft assignments tells us this doc could be about cluster A or B. 
+- But, clustering model still specifies each doc belongs to 1 topic.
+- What happens if it belongs to A AND B ?
+- You need mixed member ship models!
+
+## Compoments:
+
+- Prior probabilities. Just like in mixture of gaussians
+- topic specific word probabilities
+
+![topicSpecificWordProbabilities.jpg](topicSpecificWordProbabilities.jpg)
+
+![ldaVersusMixture.jpg](ldaVersusMixture.jpg)
+
+## In LDA:
+- One topic indicator ziw per word in doc i
+- Each word gets scored under its topic ziw
+- Distribution on prevalence of topics in document πi = [πi1 πi2 … πiK]
+
+## LDA inputs and outputs
+
+![ldaInputsOutputs.jpg](ldaInputsOutputs.jpg)
+
+- Corpus wide topic vocab distribution
+    - Can be used to examine *coherence of learned topics*
+    - e.g. Words of "Cluster 1" may have set of words related to sports. This means the are somewhat coherent.
+    - If they form *meaningul groups*, then you can give some *name/label* to the cluster.
+    
+- Doc-specific topic proportions can be used to:
+    - Relate documents
+    - Study user topic preferences
+- word assignments
+    - usually not interesting
+    
+ ## LDA implementaiton
+ 
+- Normally LDA is specified as a Bayesian model  otherwise, “probabilistic latent semantic analysis/indexing”)
+    - Account for uncertainty in parameters hen making predictions
+    - Naturally regularizes parameter estimates in contrast to MLE
+    - gibbs sampling
+- EM-like algorithms (e.g., “variational EM”), or…    - Assign docs to multiple categories
+
+## gibbs sampling
+
+- Benefits:
+    - Typically intuitive updates
+    - Very straightforward to implement
+    
+### Steps
+
+- Assignment variables and model parameters  treated similarly
+- Iteratively *draw variable/parameter from conditional distribution* having fixed:
+    - all other variables/parameters
+        - values randomly selected in previous rounds
+        - changes from iter to iter 
+    -  observations
+        - always the same values
 
